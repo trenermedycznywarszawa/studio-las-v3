@@ -201,7 +201,8 @@ function initCounters() {
   /* ============================================
      TESTIMONIALS SLIDER
      ============================================ */
-  
+
+  /* ZAKOMENTOWANE - NIE UŻYWAMY JUŻ SLIDERA
   let currentTestimonial = 0;
   let testimonialAutoplay;
 
@@ -286,6 +287,7 @@ function initCounters() {
       resetAutoplay();
     });
   }
+*/ // KONIEC ZAKOMENTOWANEGO KODU
 
   /* ============================================
      GALLERY
@@ -535,19 +537,13 @@ function initCounters() {
      ============================================ */
   
   function init() {
-    // Initialize all functionality
-    handleNavbarScroll();
-    initTestimonialSlider();
-    initScrollAnimations();
-    initLazyLoading();
-    initSmoothScroll();
-    
-    console.log('✅ Studio Las - All systems initialized');
-  }
-
-  // Run initialization when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  // Initialize all functionality
+  handleNavbarScroll();
+  // initTestimonialSlider(); // WYŁĄCZONE - statyczne karty
+  initScrollAnimations();
+  initLazyLoading();
+  initSmoothScroll();
+  console.log('✅ Studio Las - All systems initialized');
   } else {
     init();
   }
