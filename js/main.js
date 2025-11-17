@@ -163,15 +163,16 @@
   }
 
   // Initialize counters when hero section is in viewport
-  let countersAnimated = false;
+let countersAnimated = false;
+
+function initCounters() {
+  if (countersAnimated) return;
   
-  function initCounters() {
-    if (countersAnimated) return;
-    
-    const heroSection = document.querySelector('.hero');
-    if (heroSection && isInViewport(heroSection)) {
-      elements.statNumbers.forEach(animateCounter);
-      countersAnimated = true;
+  const heroSection = document.querySelector('.hero');
+  // ZMIENIONE: usuń warunek isInViewport - animuj zawsze
+  if (heroSection) {
+    elements.statNumbers.forEach(animateCounter);
+    countersAnimated = true;
     }
   }
 
@@ -326,16 +327,23 @@
 
   // Observe all elements with animation classes
   function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll(
-      '.service-card, .pricing-card, .testimonial-card, .blog-card, .process-step, .faq-item'
-    );
+  const animatedElements = document.querySelectorAll(
+    '.service-card, .pricing-card, .testimonial-card, .blog-card, .process-step, .faq-item'
+  );
+  
+  animatedElements.forEach((element, index) => {
+    // ZMIENIONE: dodaj klasę 'visible' od razu dla elementów w viewport
+    element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
     
-    animatedElements.forEach((element, index) => {
+    // Sprawdź czy element jest już widoczny
+    if (isInViewport(element)) {
+      element.classList.add('visible');
+    } else {
       element.style.opacity = '0';
       element.style.transform = 'translateY(30px)';
-      element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-      
-      observer.observe(element);
+    }
+    
+    observer.observe(element);
     });
   }
 

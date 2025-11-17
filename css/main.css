@@ -2017,3 +2017,11 @@ img[loading="lazy"].loaded {
 /* ============================================
    END OF MAIN.CSS
    ============================================ */
+/* ============================================
+   SCROLL ANIMATIONS FIX
+   ============================================ */
+
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
